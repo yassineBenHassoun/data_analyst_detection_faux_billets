@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  rstudio_projet_6:
+    build: ./docker/images/r
+    environment:
+      - DISABLE_AUTH=TRUE
+    image: "rocker/tidyverse:latest"
+    volumes:
+      - $PWD/lab:/lab
+    container_name: rstudio_projet_6
+    ports:
+      - 8787:8787
+  db_projet_6:
+    image: mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  jupyter_projet_6:
+    build: ./docker/images/jupyter
+    volumes:
+      - $PWD/lab:/lab
+    environment:
+      - PASSWORD=baki93
+      - JUPYTER_TOKEN=easy
+    ports:
+      - 8888:8888
