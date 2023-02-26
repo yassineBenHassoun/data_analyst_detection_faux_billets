@@ -21,3 +21,4 @@ RUN pip install mysql-connector-python
 RUN pip install matplotlib
 RUN pip install scipy
 RUN pip install seaborn
+RUN pip install -U scikit-learn

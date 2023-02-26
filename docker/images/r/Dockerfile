@@ -1,27 +1,22 @@
-FROM rocker/rstudio:latest
+FROM rocker/rstudio:3.6.3
+# Install system dependencies for R
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-libxml2-dev \
-libxt-dev \
-libjpeg-dev \
-libglu1-mesa-dev \
-libcairo2-dev \
-libsqlite3-dev \
-libmariadbd-dev \
-libmariadb-client-lgpl-dev \
-libpq-dev \
-libssh2-1-dev \
-unixodbc-dev \
-&& R -e "source('https://bioconductor.org/biocLite.R')" \
-&& install2.r --error \
---deps TRUE \
-shiny \
-shinyWidgets \
-shinydashboard \
-plyr \
-dplyr \
-knitr \
-tibbletime \
-anomalize \
-anytime \
-tidyverse \
-DT
+  libxml2-dev \
+  libcairo2-dev \
+  libsqlite-dev \
+  libmariadbd-dev \
+  libmariadbclient-dev \
+  libpq-dev \
+  libssh2-1-dev \
+  unixodbc-dev \
+  libsasl2-dev \
+  && install2.r --error \
+    --deps TRUE \
+    tidyverse \
+    dplyr \
+    devtools \
+    formatR \
+    remotes \
+    selectr \
+    caTools \
+    BiocManager
